@@ -20,7 +20,7 @@ const initCanvas = function () {
     canvas.height = 700;
     ctx = canvas.getContext("2d");
     // Define font size and style
-    ctx.font = 'normal 35px Arial';
+    ctx.font = 'normal 35px Bitter';
     // Draw Days names
     drawDaysName();
     // Draw current month
@@ -28,14 +28,14 @@ const initCanvas = function () {
 }
 
 const drawDaysName = function () {
-
-    ctx.fillText('Mon',  25, 65);
-    ctx.fillText('Tue', 125, 65);
-    ctx.fillText('Wen', 225, 65);
-    ctx.fillText('Thu', 325, 65);
-    ctx.fillText('Fri', 425, 65);
-    ctx.fillText('Sat', 525, 65);
-    ctx.fillText('Sun', 625, 65);
+    ctx.fillStyle = "#2275df";
+    ctx.fillText('Mon', 15, 65);
+    ctx.fillText('Tue', 115, 65);
+    ctx.fillText('Wen', 215, 65);
+    ctx.fillText('Thu', 315, 65);
+    ctx.fillText('Fri', 415, 65);
+    ctx.fillText('Sat', 515, 65);
+    ctx.fillText('Sun', 615, 65);
 
 }
 
@@ -57,7 +57,7 @@ const drawMonth = function (year, month) {
     const numberPrevDays = numberDaysInMonth(prevYear, prevMonth);
     calender.setDays(numberPrevDays, startDayInMonth, numberCurrentDays);
     drawCanvas();
-    
+
 }
 
 const drawCanvas = function () {
@@ -66,16 +66,38 @@ const drawCanvas = function () {
     const size = calender.getSize();
 
     for (let index = 0; index < size; index++) {
+        ctx.fillStyle = selectColour(index, days[index]);
         ctx.fillText(days[index], positionX(index), positionY(index));
     }
 }
 
+const selectColour = function (index, day) {
+    // first week
+    if (index < 6) {
+        return (day > 20) ? "#666" : "#000";
+    // last week
+    } else if (index > 27) {
+        if (day < 15) {
+            return (isSunday(index))? "#e67474" : "#666";
+        } else {
+            return (isSunday(index))? "#f00" : "#000";
+        }
+    } else { 
+        return (isSunday(index)) ? "#f00" : "#000";
+    }
+}
+
+//"#e67474";
+const isSunday = function (index) {
+    return ((index % 7) === 6) ? true : false;
+}
+
 const positionX = function (index) {
-    return (index % 7) * 100 + 40;
+    return (index % 7) * 100 + 30;
 }
 
 const positionY = function (index) {
-    return Math.ceil(++index / 7) * 100 + 40;
+    return Math.ceil(++index / 7) * 100 + 30;
 }
 
 const PreviouslyYear = function (year, month) {
@@ -162,7 +184,6 @@ const calender = {
 };
 
 
-
 const selectDate = function () {
 
     const year = parseInt($("#input").val());
@@ -171,10 +192,9 @@ const selectDate = function () {
     if (!yearError(year)) {
         drawMonth(year, month);
     }
-    
+
     //console.log(`year = ${year} month = ${month}`);
 }
-
 
 const findEnter = function (event) {
     if (event.keyCode == 13) {
@@ -184,21 +204,14 @@ const findEnter = function (event) {
     }
 }
 
-//$('input[type=text]').on('keydown', function(e) {
-//    if (e.which == 13) {
-//        e.preventDefault();
-//        selectDate();
-////        console.log("find enter");
-//    }
-//});
-
-
-
 const yearError = function (year) {
-    
-    if (isNaN(year)) { 
-        alert ("Please select valid year number!");
+
+    if (isNaN(year)) {
+        alert("Please select valid year number!");
+        const date = new Date();
+        const year = date.getFullYear();
+        $("#input").val(year);
         return true;
-    } 
+    }
     return false;
 }
