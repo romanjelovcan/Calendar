@@ -44,7 +44,7 @@ canvas {
 }
 
 .form-control {
-    background: #5CB85C;
+    background: #ccc;
     font-size: 16px;
     color: #323232;
     margin-bottom: 20px;
@@ -52,7 +52,7 @@ canvas {
 
 #canvas {
     border: 3px solid #000;
-    margin: 0 auto;
+    margin: 20px auto;
     border-radius: 22px;
     background: #ccc;
     margin-bottom: 15px;
