@@ -101,7 +101,7 @@ const drawMonth = function (year, month) {
     const ctx = global.getCtx();
     // get all holiday from global object.
     const allHolidays = global.getHolidays();
-    // Clear all canvas expect days names.
+    // Clear all canvas except days names.
     ctx.clearRect(0, 100, 700, 600);
     // Get all holidays in selected year and month.
     const holidays = holidaysInMonth(allHolidays, year, month);
