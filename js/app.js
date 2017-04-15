@@ -260,7 +260,6 @@ const positionY = function (index) {
     return Math.ceil(++index / 7) * 100 + 30;
 };
 
-
 const calender = {
 
     size: 6 * 7,
