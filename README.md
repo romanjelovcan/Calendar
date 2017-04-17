@@ -1,7 +1,8 @@
 # Calendar
 HTML5 JavaScript Calendar.
 
-Holidays can be configured in holidays.json file. Repeat keyword indicate that holiday repeat every year.
+Holidays can be configured in holidays.json file. Keyword year: repeat indicate that holiday repeats every year. 
+Month number 0 indicates january, number 1 february and so on to 11 which indicates december.
 
 To run this project live server that run at localhost is needed.
 ### Instruction:
