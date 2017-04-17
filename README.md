@@ -3,7 +3,7 @@ HTML5 JavaScript Calendar.
 
 To run this project live server that run at localhost is needed.
 ### Instruction:
-1. You can use live-server which can be easily downloader froth npm.
+1. You can use live-server which can be easily downloaded froth npm.
 ```
 npm install -g live-server
 ```
