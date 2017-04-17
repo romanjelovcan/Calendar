@@ -86,7 +86,7 @@ const drawCurrentMonth = function () {
     const date = new Date();
     // Get current year.
     const year = date.getFullYear();
-    // Get currnet month.
+    // Get current month.
     const month = date.getMonth();
     // Set current year. 
     $("#input").val(year);
@@ -244,7 +244,7 @@ const isHoliday = function (holidays, day) {
 const specialDay = function (holidays, index, day) {
     // Check if is a holiday, sunday or normal day.
     if (isHoliday(holidays, day)) {
-        return "#21d421";
+        return "#0bb60b";
     } else {
         return (isSunday(index)) ? "#f00" : "#000";
     }
@@ -261,7 +261,7 @@ const positionY = function (index) {
 };
 
 const calender = {
-
+    // Display 6 week and 7 Days in one week.
     size: 6 * 7,
     getSize: function () {
         return this.size;
@@ -312,13 +312,14 @@ const yearError = function (year) {
     if (isNaN(year)) {
         // Create alert when user set wrong year.
         alert("Please select valid year number!");
-        // Create currents date.
-        const date = new Date();
-        // Get current year.
-        const year = date.getFullYear();
-        // Restore year to current year.
-        $("#input").val(year);
+        drawCurrentMonth();
+        return true;
+    } else if (year < 1800) {
+        // Create alert when user set year less then 1800.
+        alert("This calender do not support years before 1800 due to change from Julian to Gregorian Calendar");
+        drawCurrentMonth();
         return true;
     }
     return false;
 };
+
