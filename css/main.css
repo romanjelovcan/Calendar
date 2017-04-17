@@ -1,5 +1,5 @@
+/* Global */
 
-/*Global*/
 * {
     margin: 0;
     padding: 0;
@@ -7,7 +7,9 @@
     font-family: 'Bitter', serif;
 }
 
-/*Body background*/
+
+/* Body background */
+
 body {
     background: #e2e2e2;
 }
@@ -26,6 +28,9 @@ body {
     color: #323232;
 }
 
+
+/* Display block */
+
 header,
 footer,
 main,
@@ -33,14 +38,23 @@ canvas {
     display: block;
 }
 
+
+/* HTML5 icons color */
+
 .fa-html5 {
     color: #f16528;
 }
+
+
+/* text class size and color */
 
 .text {
     font-size: 24px;
     color: #323232;
 }
+
+
+/* form colors, size and margin */
 
 .form {
     background: #9fd0fb;
@@ -48,8 +62,10 @@ canvas {
     font-size: 22px;
     margin-bottom: 20px;
     border-radius: 5px;
-    
 }
+
+
+/* Style canvas */
 
 #canvas {
     border: 3px solid #000;
