@@ -7,7 +7,7 @@ To run this project live server that run at localhost is needed.
 ```
 npm install -g live-server
 ```
-2. To start project move to main directory.
+2. To start project move to the main directory.
 ```
 cd Calendar
 ```
@@ -15,4 +15,4 @@ cd Calendar
 ```
 live-server.cmd
 ```
-4. Other solution that run at localhost can be used also.
+4. Other solutions that run project at localhost can also be used.
