@@ -1,6 +1,8 @@
 # Calendar
 HTML5 JavaScript Calendar.
 
+Holidays can be configured in holidays.json file. Repeat keyword indicate that holiday repeat every year.
+
 To run this project live server that run at localhost is needed.
 ### Instruction:
 1. You can use live-server which can be easily downloaded from npm.
