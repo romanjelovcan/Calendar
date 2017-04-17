@@ -12,12 +12,8 @@
 
 // Run when the page Document Object Model (DOM) is ready.
 $(document).ready(function () {
-    // Store all holiday from holidays.json file.
-    const allHolidays = loadHolidays();
-    // Set global variable allHolidays. 
-    global.setHolidays(allHolidays);
-    // Initial Canvas on page load.
-    initCanvas();
+    // load all holiday from holidays.json file.
+    loadHolidays();
 });
 
 // Global variables
@@ -42,10 +38,22 @@ const global = {
 
 // Generate http request to read holidays from file.
 const loadHolidays = function () {
+
     const httpRequest = new XMLHttpRequest();
-    httpRequest.open("GET", "/configuration/holidays.json", false);
+    httpRequest.onreadystatechange = function() {
+        // Wait on request finished and response is ready and status is ok.
+        if (this.readyState === 4 && this.status === 200) {
+            // Store All holidays from file.
+            const allHolidays = JSON.parse(this.responseText); 
+            // Set global variable allHolidays. 
+            global.setHolidays(allHolidays); 
+            // Initial Canvas on page load.
+            initCanvas();
+        }
+    };
+    // Send a request to a server.
+    httpRequest.open("GET", "/configuration/holidays.json", true);
     httpRequest.send();
-    return JSON.parse(httpRequest.responseText);
 };
 
 const initCanvas = function () {
