@@ -7,10 +7,10 @@
 //                                          //
 //////////////////////////////////////////////
 
-// enable strict mode
+// Enable strict mode.
 'use strict';
 
-// run when the page Document Object Model (DOM) is ready.
+// Run when the page Document Object Model (DOM) is ready.
 $(document).ready(function () {
     // Store all holiday from holidays.json file.
     const allHolidays = loadHolidays();
@@ -99,7 +99,7 @@ const drawCurrentMonth = function () {
 const drawMonth = function (year, month) {
     // Drawing object for the canvas.
     const ctx = global.getCtx();
-    // get all holiday from global object.
+    // Get all holiday from global object.
     const allHolidays = global.getHolidays();
     // Clear all canvas except days names.
     ctx.clearRect(0, 100, 700, 600);
@@ -109,11 +109,11 @@ const drawMonth = function (year, month) {
     const startDayInMonth = firstDayInMonth(year, month);
     // Find number days in selected year and month.
     const numberCurrentDays = numberDaysInMonth(year, month);
-    // Find previously year from selected year and month.
+    // Find previous year from selected year and month.
     const prevYear = PreviouslyYear(year, month);
-    // Find previously month from selected year and month.
+    // Find previous month from selected year and month.
     const prevMonth = PreviouslyMonth(month);
-    // Find number days in previously month from selected year and month.
+    // Find number days in previous month from selected year and month.
     const numberPrevDays = numberDaysInMonth(prevYear, prevMonth);
     // Set array of Days in selected year and month.
     calender.setDays(numberPrevDays, startDayInMonth, numberCurrentDays);
@@ -141,7 +141,7 @@ const firstDayInMonth = function (year, month) {
     const date = new Date(year, month, 1);
     // Get first day in month.
     const day = date.getDay();
-    // Convert day to new format where monday is first day in week and sunday in last day in week.
+    // Convert day to new format where monday is the first day in a week and sunday is the last day in a week.
     const newDay = startWithMonday(day);
     return newDay;
 };
@@ -180,12 +180,12 @@ const isLeapYear = function (year) {
 };
 
 const PreviouslyYear = function (year, month) {
-    // If january previously year is one less. 
+    // If current month is january, previous month (december) is in one year before. 
     return (month === 0) ? --year : year;
 };
 
 const PreviouslyMonth = function (month) {
-    // If january previously month is december. 
+    // If current month is january, previous month is december.
     return (month === 0) ? 11 : --month;
 };
 
@@ -198,7 +198,7 @@ const drawCanvas = function (holidays) {
     const ctx = global.getCtx();
     // Draw all days from calender object. 
     for (let index = 0; index < size; index++) {
-        // Change colour : red = sunday, green = holiday, grey = previously or next month.  
+        // Change colour: red = sunday, green = holiday, grey = days from previous or next month.  
         ctx.fillStyle = selectColour(holidays, index, days[index]);
         // Draw text on canvas at x, y position.
         ctx.fillText(days[index], positionX(index), positionY(index));
@@ -206,7 +206,7 @@ const drawCanvas = function (holidays) {
 };
 
 const selectColour = function (holidays, index, day) {
-    // Previously month.
+    // Previous month.
     if (index < 6) {
         if (day > 20) {
             return "#666";
@@ -232,7 +232,7 @@ const isSunday = function (index) {
 };
 
 const isHoliday = function (holidays, day) {
-    // Check is this day is holiday.
+    // Check if this day is holiday.
     for (let index = 0; index < holidays.length; index++) {
         if (holidays[index] === day) {
             return true;
@@ -242,7 +242,7 @@ const isHoliday = function (holidays, day) {
 }
 
 const specialDay = function (holidays, index, day) {
-    // Check if is a holiday, sunday or normal day.
+    // Check if it is a holiday, sunday or normal day.
     if (isHoliday(holidays, day)) {
         return "#0bb60b";
     } else {
@@ -261,7 +261,7 @@ const positionY = function (index) {
 };
 
 const calender = {
-    // Display 6 week and 7 Days in one week.
+    // Display 6 weeks and 7 days in one week.
     size: 6 * 7,
     getSize: function () {
         return this.size;
@@ -271,13 +271,13 @@ const calender = {
     setDays: function (numberDaysInPreviousMonth, startDayInMonth, numberDaysInMonth) {
         this.days = [];
         for (let index = 0; index < this.size; index++) {
-            // Previously month
+            // Previous month.
             if (index < startDayInMonth) {
                 this.days[index] = numberDaysInPreviousMonth - startDayInMonth + index + 1;
-            // Next Mount
+            // Next mount.
             } else if (index >= (startDayInMonth + numberDaysInMonth)) {
                 this.days[index] = index - (startDayInMonth + numberDaysInMonth) + 1;
-            // This mount
+            // This mount.
             } else {
                 this.days[index] = index - startDayInMonth + 1;
             }
@@ -316,7 +316,7 @@ const yearError = function (year) {
         return true;
     } else if (year < 1800) {
         // Create alert when user set year less then 1800.
-        alert("This calender do not support years before 1800 due to change from Julian to Gregorian Calendar");
+        alert("This calender does not support years before 1800 due to change from Julian to Gregorian Calendar");
         drawCurrentMonth();
         return true;
     }
